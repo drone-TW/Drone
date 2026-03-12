@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>苗栗兩日遊 · 山城秘境</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700;900&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE0;
+    --warm-brown: #5C3D2E;
+    --terracotta: #C0693A;
+    --sage: #7A9E7E;
+    --gold: #D4A843;
+    --deep-green: #2C4A3E;
+    --mist: #E8EFE6;
+    --charcoal: #2A2A2A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    background: linear-gradient(135deg, #2C4A3E 0%, #3D6B54 30%, #5C3D2E 70%, #8B5E3C 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(192,105,58,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 20%, rgba(122,158,126,0.3) 0%, transparent 55%);
+  }
+
+  /* Mountain silhouette SVG layers */
+  .mountain-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(212,168,67,0.25);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero-title-en {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    animation: fadeDown 0.9s 0.1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+
+  .hero-title span {
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+    animation: fadeDown 1s 0.35s ease both;
+  }
+
+  .hero-dates {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    animation: fadeDown 1s 0.5s ease both;
+  }
+
+  .date-block {
+    text-align: center;
+  }
+
+  .date-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+  }
+
+  .date-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-top: 0.2rem;
+  }
+
+  .date-sep {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    animation: bounce 2s infinite;
+  }
+
+  /* ===== SECTION STYLES ===== */
+  .chapter {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .chapter-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .chapter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    opacity: 0.15;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .chapter-title-wrap {
+    border-left: 3px solid var(--terracotta);
+    padding-left: 1.2rem;
+  }
+
+  .chapter-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--terracotta);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .chapter-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--warm-brown);
+    line-height: 1.2;
+  }
+
+  /* ===== DIVIDER ===== */
+  .full-divider {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--sage));
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid rgba(92,61,46,0.15);
+    margin: 3rem 0;
+  }
+
+  /* ===== CHAPTER 1: ITINERARY ===== */
+  .itinerary-section { background: white; }
+
+  .day-strip {
+    background: var(--deep-green);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 2px;
+  }
+
+  .day-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .day-date {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.6rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--terracotta), var(--sage));
+    border-radius: 2px;
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: slideIn 0.6s ease forwards;
+  }
+
+  .tl-item:nth-child(1) { animation-delay: 0.1s; }
+  .tl-item:nth-child(2) { animation-delay: 0.2s; }
+  .tl-item:nth-child(3) { animation-delay: 0.3s; }
+  .tl-item:nth-child(4) { animation-delay: 0.4s; }
+  .tl-item:nth-child(5) { animation-delay: 0.5s; }
+  .tl-item:nth-child(6) { animation-delay: 0.6s; }
+
+  .tl-dot {
+    position: absolute;
+    left: -2rem;
+    top: 0.4rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--terracotta);
+  }
+
+  .tl-dot.meal { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+  .tl-dot.hotel { background: var(--deep-green); box-shadow: 0 0 0 2px var(--deep-green); }
+
+  .tl-time {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+  }
+
+  .tl-name {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--warm-brown);
+  }
+
+  .tl-desc {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.2rem;
+    line-height: 1.6;
+  }
+
+  .tl-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 20px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .tag-food { background: #FFF3E0; color: #E65100; }
+  .tag-sight { background: #E8F5E9; color: #2E7D32; }
+  .tag-hotel { background: #E3F2FD; color: #1565C0; }
+
+  /* Hotel cards */
+  .hotel-card {
+    background: var(--mist);
+    border-left: 4px solid var(--deep-green);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .hotel-stars {
+    color: var(--gold);
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .hotel-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--deep-green);
+  }
+
+  .hotel-info {
+    font-size: 0.78rem;
+    color: #555;
+    margin-top: 0.3rem;
+    line-height: 1.7;
+  }
+
+  .hotel-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+  }
+
+  .feature-pill {
+    background: white;
+    border: 1px solid rgba(44,74,62,0.2);
+    color: var(--deep-green);
+    font-size: 0.65rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Meal cards */
+  .meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .meal-card {
+    background: white;
+    border: 1px solid rgba(92,61,46,0.1);
+    border-radius: 8px;
+    padding: 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .meal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--terracotta));
+  }
+
+  .meal-type {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .meal-name {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--warm-brown);
+    margin-bottom: 0.5rem;
+  }
+
+  .meal-desc {
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  .meal-price {
+    margin-top: 0.7rem;
+    font-size: 0.75rem;
+    color: var(--deep-green);
+    font-weight: 600;
+  }
+
+  /* ===== CHAPTER 2: TRANSPORT ===== */
+  .transport-section {
+    background: var(--deep-green);
+    color: white;
+  }
+
+  .transport-section .chapter-title { color: white; }
+  .transport-section .chapter-num { color: rgba(255,255,255,0.1); }
+  .transport-section .chapter-title-wrap { border-color: var(--gold); }
+  .transport-section .chapter-tag { color: var(--gold); }
+
+  .transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .transport-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: background 0.3s;
+  }
+
+  .transport-card:hover {
+    background: rgba(255,255,255,0.12);
+  }
+
+  .transport-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .transport-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .transport-detail {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+  }
+
+  .transport-highlight {
+    display: inline-block;
+    background: rgba(212,168,67,0.2);
+    border: 1px solid rgba(212,168,67,0.4);
+    color: var(--gold);
+    font-size: 0.65rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-top: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .route-banner {
+    background: rgba(212,168,67,0.15);
+    border: 1px solid rgba(212,168,67,0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .route-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .route-stop {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .route-arrow {
+    color: var(--gold);
+    font-size: 1.2rem;
+  }
+
+  .route-time {
+    font-size: 0.7rem;
+    color: var(--gold);
+    display: block;
+    text-align: center;
+    margin-top: 0.2rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== CHAPTER 3: ATTRACTIONS ===== */
+  .attractions-section { background: var(--cream); }
+
+  .attraction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .attraction-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .attraction-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .attr-banner {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+  }
+
+  .attr-banner-1 { background: linear-gradient(135deg, #4A7C59, #2C4A3E); }
+  .attr-banner-2 { background: linear-gradient(135deg, #8B5E3C, #5C3D2E); }
+  .attr-banner-3 { background: linear-gradient(135deg, #C0693A, #8B4513); }
+  .attr-banner-4 { background: linear-gradient(135deg, #5B8A8B, #2C4A5E); }
+  .attr-banner-5 { background: linear-gradient(135deg, #7A7C3A, #4A4C2E); }
+  .attr-banner-6 { background: linear-gradient(135deg, #9C5E8B, #5C2E4C); }
+
+  .attr-body { padding: 1.2rem; }
+
+  .attr-category {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: var(--terracotta);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+  }
+
+  .attr-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    margin-bottom: 0.5rem;
+  }
+
+  .attr-history {
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+  }
+
+  .attr-highlight {
+    background: var(--mist);
+    border-left: 3px solid var(--sage);
+    padding: 0.5rem 0.8rem;
+    font-size: 0.73rem;
+    color: var(--deep-green);
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 0.8rem;
+  }
+
+  /* ===== SOUVENIRS ===== */
+  .souvenir-section {
+    background: linear-gradient(180deg, var(--cream) 0%, #EDE4D0 100%);
+    padding-top: 0;
+  }
+
+  .souvenir-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .souvenir-title h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+  }
+
+  .souvenir-title p {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--terracotta);
+    margin-top: 0.3rem;
+  }
+
+  .souvenir-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .souvenir-item {
+    background: white;
+    border-radius: 10px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+    border: 1px solid rgba(92,61,46,0.08);
+    transition: box-shadow 0.3s;
+  }
+
+  .souvenir-item:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+
+  .souvenir-emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+
+  .souvenir-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--warm-brown);
+    margin-bottom: 0.3rem;
+  }
+
+  .souvenir-desc {
+    font-size: 0.68rem;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  .souvenir-price {
+    font-size: 0.72rem;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-top: 0.4rem;
+  }
+
+  /* ===== CHAPTER 4: TIPS ===== */
+  .tips-section {
+    background: white;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tip-card {
+    border-radius: 8px;
+    padding: 1.3rem;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .tip-card.weather { background: #EBF5FB; border-color: #AED6F1; }
+  .tip-card.clothing { background: #EAF9EA; border-color: #A9DFBF; }
+  .tip-card.transport { background: #FEF9E7; border-color: #F9E79F; }
+  .tip-card.etiquette { background: #F5EEF8; border-color: #D7BDE2; }
+
+  .tip-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+
+  .tip-title {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--warm-brown);
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-content {
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  /* Emergency */
+  .emergency-box {
+    background: linear-gradient(135deg, #C0392B, #8B0000);
+    border-radius: 10px;
+    padding: 2rem;
+    color: white;
+  }
+
+  .emergency-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .emergency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .emergency-item {
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+  }
+
+  .emergency-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.2rem;
+  }
+
+  .emergency-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #FFD700;
+  }
+
+  .emergency-name {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.9);
+    margin-top: 0.1rem;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    line-height: 2;
+  }
+
+  footer .footer-brand {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ===== SECTION BG ALTERNATING ===== */
+  .bg-cream { background: var(--cream); }
+  .bg-white { background: white; }
+
+  /* Floating decorative elements */
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .section-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Info bar */
+  .info-bar {
+    background: var(--terracotta);
+    color: white;
+    padding: 0.7rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .info-icon { font-size: 1rem; }
+
+  /* Two-day summary bar */
+  .day-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .day-sum-block {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .day-sum-block:first-child {
+    background: linear-gradient(135deg, #2C4A3E, #3D6B54);
+  }
+
+  .day-sum-block:last-child {
+    background: linear-gradient(135deg, #5C3D2E, #8B5E3C);
+  }
+
+  .day-sum-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .day-sum-theme {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    color: white;
+    margin: 0.2rem 0 0.5rem;
+  }
+
+  .day-sum-spots {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .day-summary { grid-template-columns: 1fr; }
+    .route-flow { flex-direction: column; }
+    .hero-dates { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <!-- Mountain silhouettes -->
+  <svg class="mountain-layer" viewBox="0 0 1440 300" preserveAspectRatio="none" style="height:300px;">
+    <polygon points="0,300 200,100 400,200 600,50 800,180 1000,80 1200,160 1440,60 1440,300" fill="rgba(0,0,0,0.25)"/>
+    <polygon points="0,300 150,160 350,250 500,130 700,220 900,120 1100,200 1300,110 1440,170 1440,300" fill="rgba(0,0,0,0.2)"/>
+    <polygon points="0,300 0,280 300,230 600,270 900,240 1200,265 1440,245 1440,300" fill="rgba(44,74,62,0.6)"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">🗺 TRAVEL GUIDE · 旅遊達人精選</div>
+    <div class="hero-title-en">Miaoli · Mountain & Story</div>
+    <h1 class="hero-title">苗<span>栗</span><br>兩日遊</h1>
+    <p class="hero-subtitle">山城秘境 · 客庄風情 · 慢旅体驗</p>
+    <div class="hero-dates">
+      <div class="date-block">
+        <div class="date-num">4.01</div>
+        <div class="date-label">民國115年 · 第一天</div>
+      </div>
+      <div class="date-sep"></div>
+      <div class="date-block">
+        <div class="date-num">4.02</div>
+        <div class="date-label">民國115年 · 第二天</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">▼ 探索完整行程</div>
+</section>
+
+<!-- Info Bar -->
+<div class="info-bar">
+  <div class="info-item"><span class="info-icon">🚉</span> 出發地：台北</div>
+  <div class="info-item"><span class="info-icon">📍</span> 目的地：苗栗縣</div>
+  <div class="info-item"><span class="info-icon">🏨</span> 四星級以上住宿</div>
+  <div class="info-item"><span class="info-icon">🚌</span> 大眾交通為主</div>
+  <div class="info-item"><span class="info-icon">👥</span> 適合2–6人小團體</div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- ===== CHAPTER 1: ITINERARY ===== -->
+<section class="section-wrapper itinerary-section">
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">01</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-tag">CHAPTER ONE · 行程規劃</div>
+        <div class="chapter-title">旅行行程・住宿・用餐</div>
+      </div>
+    </div>
+
+    <!-- Two-day overview -->
+    <div class="day-summary">
+      <div class="day-sum-block">
+        <div class="day-sum-title">Day 01</div>
+        <div class="day-sum-theme">🍵 茶鄉慢行 · 桐花秘境</div>
+        <div class="day-sum-spots">台北出發 → 三義木雕 → 苗栗老街<br>→ 通霄神社 → 龍騰斷橋</div>
+      </div>
+      <div class="day-sum-block">
+        <div class="day-sum-title">Day 02</div>
+        <div class="day-sum-theme">🏔 獅潭仙境 · 客庄風情</div>
+        <div class="day-sum-spots">獅潭義民廟 → 南庄老街<br>→ 向天湖 → 採購伴手禮 → 返台北</div>
+      </div>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="day-strip">
+      <div>
+        <div class="day-label">Day 1</div>
+        <div class="day-date">2026年4月1日（星期三）</div>
+      </div>
+      <div style="margin-left:auto; font-size:0.75rem; color:rgba(255,255,255,0.6);">主題：山城入境・木雕傳藝</div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">07:30 — 台北出發</div>
+        <div class="tl-name">台北車站集合 <span class="tl-tag tag-sight">交通</span></div>
+        <div class="tl-desc">搭乘台鐵自強號（EMU3000），約1小時20分鐘抵達三義站，旅途輕鬆愜意。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">09:30 — 上午景點</div>
+        <div class="tl-name">三義木雕博物館 <span class="tl-tag tag-sight">景點</span></div>
+        <div class="tl-desc">台灣木雕藝術重鎮，館藏精緻，可親身體驗木雕工藝，感受苗栗客家文化底蘊。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot meal"></div>
+        <div class="tl-time">12:00 — 午餐</div>
+        <div class="tl-name">三義客家餐廳 <span class="tl-tag tag-food">用餐</span></div>
+        <div class="tl-desc">享用正宗客家料理：薑絲炒大腸、梅干扣肉、客家小炒、鹹湯圓，風味道地實惠。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">13:30 — 下午景點</div>
+        <div class="tl-name">龍騰斷橋 · 勝興車站 <span class="tl-tag tag-sight">景點</span></div>
+        <div class="tl-desc">百年鐵道遺跡，龍騰斷橋殘影壯闊，勝興車站保留日式木造建築，時光感十足。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">16:00 — 傍晚</div>
+        <div class="tl-name">苗栗市區・苗栗老街漫步 <span class="tl-tag tag-sight">景點</span></div>
+        <div class="tl-desc">漫步苗栗老市區，感受純樸客庄氣氛，探訪在地小店，採購特色零食伴手禮。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot meal"></div>
+        <div class="tl-time">18:30 — 晚餐</div>
+        <div class="tl-name">苗栗特色餐廳 <span class="tl-tag tag-food">用餐</span></div>
+        <div class="tl-desc">推薦嘗試苗栗特色「客家鹹豬肉」、「福菜湯」，搭配在地米酒，滋味鮮美難忘。</div>
+      </div>
+    </div>
+
+    <!-- Hotel Card Day 1 -->
+    <div class="hotel-card">
+      <div class="hotel-stars">★★★★★</div>
+      <div class="hotel-name">🏨 推薦住宿 · 苗栗喆園飯店（Hotel Pal Miaoli）</div>
+      <div class="hotel-info">
+        📍 苗栗市中正路附近市區精華地段，鄰近苗栗火車站步行可達<br>
+        💰 平日參考價格：NT$ 3,200–4,800 / 雙人房（含早餐）<br>
+        ⭐ 五星級設施，附設餐廳、SPA、健身房，服務精緻
+      </div>
+      <div class="hotel-features">
+        <span class="feature-pill">🅿 免費停車</span>
+        <span class="feature-pill">🍳 早餐供應</span>
+        <span class="feature-pill">💆 SPA中心</span>
+        <span class="feature-pill">🏊 游泳池</span>
+        <span class="feature-pill">📶 免費WiFi</span>
+        <span class="feature-pill">🛏 豪華客房</span>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- DAY 2 -->
+    <div class="day-strip">
+      <div>
+        <div class="day-label">Day 2</div>
+        <div class="day-date">2026年4月2日（星期四）</div>
+      </div>
+      <div style="margin-left:auto; font-size:0.75rem; color:rgba(255,255,255,0.6);">主題：山林深呼吸・客庄巡禮</div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot meal"></div>
+        <div class="tl-time">08:00 — 早餐</div>
+        <div class="tl-name">飯店早餐 / 苗栗在地早點 <span class="tl-tag tag-food">用餐</span></div>
+        <div class="tl-desc">享用飯店豐盛早餐，或步行至附近早餐店嘗試苗栗特色「粄條湯」，暖胃迎接山城新一天。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">09:30 — 上午景點</div>
+        <div class="tl-name">南庄老街 · 東河橋 <span class="tl-tag tag-sight">景點</span></div>
+        <div class="tl-desc">保存完整的賽夏族與客家文化聚落，竹橋倒影、溪谷清流，4月桐花盛開，浪漫如詩。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">11:00 — 山林秘境</div>
+        <div class="tl-name">向天湖 · 賽夏族文化聚落 <span class="tl-tag tag-sight">景點</span></div>
+        <div class="tl-desc">群山懷抱的高山湖泊，賽夏族原住民文化保留完整，可探訪矮靈祭文化館，深度了解原住民精神。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot meal"></div>
+        <div class="tl-time">12:30 — 午餐</div>
+        <div class="tl-name">南庄老街風味餐 <span class="tl-tag tag-food">用餐</span></div>
+        <div class="tl-desc">必嘗南庄名物：麻糬、草仔粿、桂花釀飲品，享用桂花雞湯、山豬肉鍋等山林鮮味。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">14:30 — 下午採購</div>
+        <div class="tl-name">苗栗特產採購・伴手禮大搜羅 <span class="tl-tag tag-sight">採購</span></div>
+        <div class="tl-desc">採購客家柿餅、草莓果醬、火炭谷茶、桂花釀、麻薯等苗栗名產，滿載而歸。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-time">16:30 — 返程</div>
+        <div class="tl-name">苗栗車站 → 台北 <span class="tl-tag tag-sight">交通</span></div>
+        <div class="tl-desc">搭乘台鐵自強號返台北，約18:00抵達，結束愉快的山城兩日遊。</div>
+      </div>
+    </div>
+
+    <!-- Meal Summary -->
+    <h3 style="font-family:'Noto Serif TC',serif; color:var(--warm-brown); margin: 2rem 0 1rem; font-size:1.1rem;">🍽 用餐總覽推薦</h3>
+    <div class="meal-grid">
+      <div class="meal-card">
+        <div class="meal-type">DAY 1 · 午餐推薦</div>
+        <div class="meal-name">老牌客家餐廳「三義客家莊」</div>
+        <div class="meal-desc">道地客家合菜，薑絲炒大腸、梅干扣肉必點，環境古色古香，合菜共享最對味。</div>
+        <div class="meal-price">💰 人均約 NT$350–500</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-type">DAY 1 · 晚餐推薦</div>
+        <div class="meal-name">苗栗市區「福龍客家料理」</div>
+        <div class="meal-desc">主廚傳承三代客家秘方，鹹豬肉、福菜湯、客家小炒，本地人最愛的家常好滋味。</div>
+        <div class="meal-price">💰 人均約 NT$400–600</div>
+      </div>
+      <div class="meal-card">
+        <div class="meal-type">DAY 2 · 午餐推薦</div>
+        <div class="meal-name">南庄老街「桂花園餐廳」</div>
+        <div class="meal-desc">以桂花入菜聞名，桂花雞湯清甜芳香，搭配竹筒飯、山藥料理，清爽養生又美味。</div>
+        <div class="meal-price">💰 人均約 NT$380–550</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ===== CHAPTER 2: TRANSPORT ===== -->
+<section class="section-wrapper transport-section">
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num" style="color:rgba(255,255,255,0.08);">02</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-tag">CHAPTER TWO · 交通規劃</div>
+        <div class="chapter-title" style="color:white;">大眾交通・精準暢行</div>
+      </div>
+    </div>
+
+    <div class="route-banner">
+      <div style="font-size:0.65rem; letter-spacing:0.25em; color:var(--gold); margin-bottom:0.8rem;">全程主要交通路線</div>
+      <div class="route-flow">
+        <div>
+          <div class="route-stop">🏙 台北車站</div>
+          <div class="route-time">出發點</div>
+        </div>
+        <div class="route-arrow">→</div>
+        <div>
+          <div class="route-stop">🚂 台鐵自強號</div>
+          <div class="route-time">約80分鐘</div>
+        </div>
+        <div class="route-arrow">→</div>
+        <div>
+          <div class="route-stop">🏔 三義 / 苗栗站</div>
+          <div class="route-time">主要基地</div>
+        </div>
+        <div class="route-arrow">→</div>
+        <div>
+          <div class="route-stop">🚌 苗栗客運</div>
+          <div class="route-time">各景點接駁</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="transport-grid">
+      <div class="transport-card">
+        <div class="transport-icon">🚄</div>
+        <div class="transport-title">台北 ↔ 苗栗（主幹線）</div>
+        <div class="transport-detail">
+          台鐵自強號（EMU3000新型列車）<br>
+          台北車站 → 三義站 約 1小時20分<br>
+          台北車站 → 苗栗站 約 1小時30分<br>
+          票價：NT$206（全票）<br>
+          班次密集，每日多班次可選
+        </div>
+        <span class="transport-highlight">建議提前網路訂票</span>
+      </div>
+
+      <div class="transport-card">
+        <div class="transport-icon">🚌</div>
+        <div class="transport-title">苗栗市區 ↔ 三義景區</div>
+        <div class="transport-detail">
+          苗栗客運 5671路<br>
+          苗栗站 → 三義 約 30分鐘<br>
+          票價：NT$45–60<br>
+          <br>
+          苗栗客運 5678路<br>
+          苗栗站 → 南庄 約 50分鐘<br>
+          票價：NT$75–90
+        </div>
+        <span class="transport-highlight">可使用悠遊卡搭乘</span>
+      </div>
+
+      <div class="transport-card">
+        <div class="transport-icon">🛵</div>
+        <div class="transport-title">景區內接駁建議</div>
+        <div class="transport-detail">
+          三義木雕文化園區 → 龍騰斷橋<br>
+          建議搭計程車或包車，約NT$200<br>
+          <br>
+          南庄 → 向天湖<br>
+          可搭苗栗客運山線班次<br>
+          班次較少，建議事先查詢時刻表
+        </div>
+        <span class="transport-highlight">Google Map 即時查詢</span>
+      </div>
+
+      <div class="transport-card">
+        <div class="transport-icon">📱</div>
+        <div class="transport-title">必備 App 與訂票資訊</div>
+        <div class="transport-detail">
+          🎫 台鐵訂票：台鐵e訂通 App<br>
+          🗺 導航：Google Maps / 樂客地圖<br>
+          🚌 公車查詢：苗栗客運官網<br>
+          🚕 計程車：Uber / Line Taxi<br>
+          💳 付款：悠遊卡適用大部分路線
+        </div>
+        <span class="transport-highlight">提前14天可購特惠票</span>
+      </div>
+
+      <div class="transport-card">
+        <div class="transport-icon">💡</div>
+        <div class="transport-title">交通小撇步</div>
+        <div class="transport-detail">
+          ✅ 建議星期三出發，票價較優惠<br>
+          ✅ 購買苗栗一日周遊券可節省費用<br>
+          ✅ 苗栗站附近有租借電動自行車服務<br>
+          ✅ 三義舊山線可徒步或騎乘自行車<br>
+          ✅ 回程建議避開下班尖峰時段
+        </div>
+        <span class="transport-highlight">省錢達人必看</span>
+      </div>
+
+      <div class="transport-card">
+        <div class="transport-icon">🏨</div>
+        <div class="transport-title">住宿 ↔ 景點距離</div>
+        <div class="transport-detail">
+          飯店（苗栗市區）至各主要景點：<br>
+          → 三義木雕：車程約25分<br>
+          → 龍騰斷橋：車程約30分<br>
+          → 南庄老街：車程約45分<br>
+          → 向天湖：車程約55分<br>
+          建議第二天租半日計程車或包車
+        </div>
+        <span class="transport-highlight">包車費用約NT$2,500/半日</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ===== CHAPTER 3: ATTRACTIONS ===== -->
+<section class="section-wrapper attractions-section">
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">03</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-tag">CHAPTER THREE · 景點介紹</div>
+        <div class="chapter-title">風光亮點・歷史文化</div>
+      </div>
+    </div>
+
+    <div class="attraction-grid">
+      <div class="attraction-card">
+        <div class="attr-banner attr-banner-1">🪵</div>
+        <div class="attr-body">
+          <div class="attr-category">木雕藝術 · 必訪</div>
+          <div class="attr-name">三義木雕博物館</div>
+          <div class="attr-history">三義是台灣木雕藝術的故鄉，因早期樟樹資源豐富而發展出獨特的木雕工藝傳統。博物館建立於1995年，典藏超過千件本地藝師精品，完整呈現客家木雕藝術的演進歷史。</div>
+          <div class="attr-highlight">✨ 亮點：可現場觀賞師傅示範，並購買手工木雕紀念品</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attr-banner attr-banner-2">🌉</div>
+        <div class="attr-body">
+          <div class="attr-category">歷史古跡 · 必訪</div>
+          <div class="attr-name">龍騰斷橋</div>
+          <div class="attr-history">建於日治時期1905年，原為舊山線鐵路橋墩，1935年關刀山大地震後倒塌。殘存的磚石橋墩矗立於山谷間，歷經近百年風霜，卻形成了台灣最具詩意的廢墟美景之一。</div>
+          <div class="attr-highlight">✨ 亮點：4月桐花飄落，白雪般的花瓣與古橋相映成詩</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attr-banner attr-banner-3">🚉</div>
+        <div class="attr-body">
+          <div class="attr-category">鐵道文化 · 推薦</div>
+          <div class="attr-name">勝興車站</div>
+          <div class="attr-history">海拔402公尺，曾為台鐵縱貫線最高點，建於1906年，日式木造站房古樸典雅，是台灣鐵道史的重要見證。廢站後轉型為觀光景點，保存完整的日治時期建築風貌令人讚嘆。</div>
+          <div class="attr-highlight">✨ 亮點：品嘗月台便當、搭乘懷舊列車體驗（假日限定）</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attr-banner attr-banner-4">🌊</div>
+        <div class="attr-body">
+          <div class="attr-category">原住民文化 · 深度</div>
+          <div class="attr-name">向天湖・賽夏聚落</div>
+          <div class="attr-history">向天湖是台灣少數保存完整原住民聚落的山中湖泊，賽夏族世居於此。族人每兩年舉辦的「矮靈祭」（巴斯達隘）是台灣最神秘的原住民祭典，已列入重要民俗文化資產。</div>
+          <div class="attr-highlight">✨ 亮點：文化館展示矮靈祭服飾，可體驗賽夏族傳統歌謠</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attr-banner attr-banner-5">🌸</div>
+        <div class="attr-body">
+          <div class="attr-category">古鎮老街 · 推薦</div>
+          <div class="attr-name">南庄老街</div>
+          <div class="attr-history">清朝開發的山城古鎮，融合客家、賽夏族與閩南文化。老街兩旁保存了1920年代的街屋建築，桂花飄香、竹橋橫跨東河，是苗栗最具人文氣息的旅遊聚落，被譽為台版九份。</div>
+          <div class="attr-highlight">✨ 亮點：4月桐花如雪飄落東河橋畔，絕美浪漫</div>
+        </div>
+      </div>
+
+      <div class="attraction-card">
+        <div class="attr-banner attr-banner-6">🏛</div>
+        <div class="attr-body">
+          <div class="attr-category">神社建築 · 特色</div>
+          <div class="attr-name">通霄神社</div>
+          <div class="attr-history">建於1937年的日治時期神社，是台灣少數保存最完整的日式神社之一。依山而建的石燈籠神道、鳥居與拜殿，在台灣神社群中以保存狀態最佳著稱，2002年列為縣定古蹟。</div>
+          <div class="attr-highlight">✨ 亮點：傍晚燈光映照古鳥居，氛圍如置身日本</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOUVENIRS ===== -->
+<section class="section-wrapper souvenir-section">
+  <div class="chapter" style="padding-top: 0;">
+    <div class="souvenir-title">
+      <h3>🛍 苗栗手信・精選伴手禮</h3>
+      <p>MIAOLI SOUVENIRS · 八大必買名產</p>
+    </div>
+
+    <div class="souvenir-grid">
+      <div class="souvenir-item">
+        <div class="souvenir-emoji">🥭</div>
+        <div class="souvenir-name">客家柿餅</div>
+        <div class="souvenir-desc">公館鄉天然日曬柿餅，甜而不膩，是苗栗最代表性的秋冬名產，四季皆可購得</div>
+        <div class="souvenir-price">NT$180–320 / 包</div>
+      </div>
+      <div class="souvenir-item">
+        <div class="souvenir-emoji">🍵</div>
+        <div class="souvenir-name">火炭谷烏龍茶</div>
+        <div class="souvenir-desc">頭屋、公館高山茶區出產，茶湯清香甘醇，是苗栗山城特產，送禮自用皆宜</div>
+        <div class="souvenir-price">NT$350–800 / 盒</div>
+      </div>
+      <div class="souvenir-item">
+        <div class="souvenir-emoji">🌸</div>
+        <div class="souvenir-name">桂花釀</div>
+        <div class="souvenir-desc">南庄特產，以盛開桂花釀製，可製飲品或入菜，香氣清雅迷人，限量供應</div>
+        <div class="souvenir-price">NT$250–450 / 瓶</div>
+      </div>
+      <div class="souvenir-item">
+        <div class="souvenir-emoji">🍡</div>
+        <div class="souvenir-name">客家麻糬</div>
+        <div class="souvenir-desc">Q彈有嚼勁的傳統糯米麻糬，花生、紅豆、芝麻等口味齊備，現做現賣最新鮮</div>
+        <div class="souvenir-price">NT$80–150 / 盒</div>
+      </div>
+      <div class="souvenir-item">
+        <div class="souvenir-emoji">🪵</div>
+        <div class="souvenir-name">三義木雕工藝品</div>
+        <div class="souvenir-desc">三義藝師手工雕刻，從小擺件到大型裝飾均有，是最具苗栗特色的高端紀念品</div>
+        <div class="souvenir-price">NT$200–5,000+</div>
+      </div>
+      <div class="souvenir-item">
+        <div class="souvenir-emoji">🍓</div>
+        <div class="souvenir-name">大湖草莓醬</div>
+        <div class="souvenir-desc">苗栗大湖是全台最大草莓產區，新鮮草莓製成的果醬色澤鮮紅，酸甜濃郁可口</div>
+        <div class="souvenir-price">NT$120–200 / 瓶</div>
+      </div>
+      <div class="souvenir-item">
+        <div class="souvenir-emoji">🥜</div>
+        <div class="souvenir-name">公館紅棗</div>
+        <div class="souvenir-desc">公館鄉為台灣紅棗主要產地，新鮮、乾燥、蜜餞各式皆有，養生滋補佳品</div>
+        <div class="souvenir-price">NT$150–300 / 包</div>
+      </div>
+      <div class="souvenir-item">
+        <div class="souvenir-emoji">🎋</div>
+        <div class="souvenir-name">客家花布製品</div>
+        <div class="souvenir-desc">傳統客家大花布製成的提袋、圍巾、抱枕等，色彩鮮豔喜氣，文化味濃厚</div>
+        <div class="souvenir-price">NT$200–600</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ===== CHAPTER 4: TIPS ===== -->
+<section class="section-wrapper tips-section">
+  <div class="chapter">
+    <div class="chapter-header">
+      <div class="chapter-num">04</div>
+      <div class="chapter-title-wrap">
+        <div class="chapter-tag">CHAPTER FOUR · 行前叮嚀</div>
+        <div class="chapter-title">出行準備・緊急應對</div>
+      </div>
+    </div>
+
+    <div class="tips-grid">
+      <div class="tip-card weather">
+        <div class="tip-icon">🌤</div>
+        <div class="tip-title">4月苗栗氣候提醒</div>
+        <div class="tip-content">
+          • 平均氣溫：18–25°C，早晚溫差可達8°C<br>
+          • 4月為梅雨前夕，山區偶有午後雷陣雨<br>
+          • 正逢桐花季（4月中至5月初），景色絕美<br>
+          • 山區（南庄、向天湖）比市區低約3–5°C<br>
+          • 出發前查詢中央氣象局苗栗山區預報
+        </div>
+      </div>
+
+      <div class="tip-card clothing">
+        <div class="tip-icon">👕</div>
+        <div class="tip-title">穿著建議</div>
+        <div class="tip-content">
+          • 採「洋蔥式穿法」：薄外套+透氣短袖<br>
+          • 建議攜帶輕型防水薄外套或雨衣<br>
+          • 山區健行建議穿著防滑運動鞋<br>
+          • 老街石板路較滑，避免高跟鞋<br>
+          • 防曬乳及太陽眼鏡必備（戶外景點多）
+        </div>
+      </div>
+
+      <div class="tip-card transport">
+        <div class="tip-icon">🎒</div>
+        <div class="tip-title">行前準備清單</div>
+        <div class="tip-content">
+          ✅ 台鐵來回票務（建議14天前預訂）<br>
+          ✅ 飯店訂房確認單 / 確認check-in時間<br>
+          ✅ 悠遊卡（確保餘額充足）<br>
+          ✅ 現金備用（山區小店多不接受刷卡）<br>
+          ✅ 行動電源 + 充電線<br>
+          ✅ 個人常備藥品（頭痛藥、腸胃藥）
+        </div>
+      </div>
+
+      <div class="tip-card etiquette">
+        <div class="tip-icon">🙏</div>
+        <div class="tip-title">文化禮儀與注意事項</div>
+        <div class="tip-content">
+          • 參觀通霄神社請保持安靜莊重<br>
+          • 向天湖賽夏聚落：拍照前請獲得同意<br>
+          • 景區內請自備環保袋，維護山林環境<br>
+          • 三義木雕店商品勿隨意觸碰<br>
+          • 登山步道請勿踩踏路旁植物
+        </div>
+      </div>
+    </div>
+
+    <!-- Emergency Box -->
+    <div class="emergency-box">
+      <div class="emergency-title">🚨 緊急狀況聯絡資訊</div>
+      <div class="emergency-grid">
+        <div class="emergency-item">
+          <div class="emergency-label">緊急救援</div>
+          <div class="emergency-number">110</div>
+          <div class="emergency-name">警察報案專線</div>
+        </div>
+        <div class="emergency-item">
+          <div class="emergency-label">消防救護</div>
+          <div class="emergency-number">119</div>
+          <div class="emergency-name">火災 / 救護車</div>
+        </div>
+        <div class="emergency-item">
+          <div class="emergency-label">旅遊服務</div>
+          <div class="emergency-number">0800-011765</div>
+          <div class="emergency-name">觀光局旅遊申訴專線</div>
+        </div>
+        <div class="emergency-item">
+          <div class="emergency-label">苗栗縣政府</div>
+          <div class="emergency-number">037-322150</div>
+          <div class="emergency-name">苗栗縣旅遊服務</div>
+        </div>
+        <div class="emergency-item">
+          <div class="emergency-label">醫療求診</div>
+          <div class="emergency-number">037-261920</div>
+          <div class="emergency-name">苗栗大千醫院急診</div>
+        </div>
+        <div class="emergency-item">
+          <div class="emergency-label">健保諮詢</div>
+          <div class="emergency-number">1966</div>
+          <div class="emergency-name">健保署安心專線</div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem; padding:1rem; background:rgba(255,255,255,0.08); border-radius:6px;">
+        <div style="font-size:0.75rem; color:rgba(255,255,255,0.85); line-height:2;">
+          🏥 <strong>最近醫療院所</strong>：大千綜合醫院（苗栗市） ｜ 為恭紀念醫院（頭份市）<br>
+          🌧 <strong>颱風/特報應變</strong>：立即收看中央氣象局 weather.gov.tw，視情況取消或延後行程<br>
+          🚗 <strong>道路求助</strong>：公路總局道路緊急救援 0800-086969（免費）
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-brand">🗺 苗栗山城兩日遊 · 旅遊達人精選企劃</div>
+  <div>民國115年（2026） · 4月1日 – 4月2日</div>
+  <div>台北出發 · 四星級住宿 · 大眾交通全程</div>
+  <div style="margin-top:0.8rem; font-size:0.65rem; opacity:0.5;">
+    本行程僅供參考，實際票價與班次請以各官方單位公告為準 ｜ Designed for Travel Enthusiasts
+  </div>
+</footer>
+
+</body>
+</html>
